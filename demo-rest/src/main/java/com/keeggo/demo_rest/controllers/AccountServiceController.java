@@ -23,7 +23,7 @@ public class AccountServiceController {
 		.then()	
 			.log().all()
 			.statusCode(200)
-			.body(containsString("Success"))
+			//.body(containsString("Success"))
 		;
 	}
 	

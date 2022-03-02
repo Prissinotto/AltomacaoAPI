@@ -16,6 +16,7 @@ public class OrderController {
 	public void adicionarProdutoNoCarrinho(CustomerShoppingLogin customerShoppingLogin, CustomerCarrinho customerCarrinho ) {
 		this.httpManager.get()
 		.given()
+			.log().all()
 		 	.header("Authorization", "Bearer " + accountServiceController.realizarLoginRetornandoToken(customerShoppingLogin))
 		 .when()
 			.post("/order/api/v1/carts/"+customerCarrinho.getUserId()+"/product/"+customerCarrinho.getProductId()+"/color/"+customerCarrinho.getColor()+"?hasWarranty=false&quantity="+customerCarrinho.getQuantidade()+"")

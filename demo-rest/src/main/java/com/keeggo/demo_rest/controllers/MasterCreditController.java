@@ -1,5 +1,7 @@
 package com.keeggo.demo_rest.controllers;
 
+import static org.hamcrest.Matchers.*;
+
 import com.keeggo.demo_rest.model.CustomerPagamento;
 import com.keeggo.rest_assured_connector.driver.RequestHTTPManager;
 
@@ -24,7 +26,7 @@ public class MasterCreditController {
 					"\"MCRecevingCard.AccountNumber\"" + ":" + "\"" + customerPagamento.getMCRecevingCard_AccountNumber() + "\"" + "," +
 					"\"MCRecevingCard.Currency\"" + ":" + "\"" + customerPagamento.getMCRecevingCard_Currency() + "\"" + "," +
 					"\"MCTransactionDate\"" + ":" + "\"" + customerPagamento.getMCTransactionDate() + "\"" + "," +
-					"\"MCTransactionType\"" + ":" + "\"" + customerPagamento.getMCTransactionType() + "\""+"}"
+					"\"MCTransactionType\"" + ":" + "\"" + customerPagamento.getMCTransactionType() + "\"" + "}"
 					)
 			//.body(customerPagamento)
 		 	.headers("Content-Type", "application/json")
@@ -32,6 +34,7 @@ public class MasterCreditController {
 		.then()
 			.log().all()
 			.statusCode(201)
+			.body("MCResponse.Reason", hasItem("Approved"))
 		;
 	}
 

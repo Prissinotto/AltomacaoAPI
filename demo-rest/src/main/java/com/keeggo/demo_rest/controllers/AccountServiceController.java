@@ -76,7 +76,7 @@ public class AccountServiceController {
 			.log().all()
 			.statusCode(201);
 	}
-	
+  
 	public void adicionarCartaoDeCredito(CustomerShoppingLogin customerShoppingLogin, CustomerMasterCredit customerMasterCredit) {
 		this.httpManager.get()
 		.given()
@@ -84,10 +84,33 @@ public class AccountServiceController {
 		 	.body(customerMasterCredit)
 		 .when()
 			.post("/accountservice/accountrest/api/v1/addMasterCredit")
+     .then()
+			.log().all()
+			.statusCode(200);
+	}
+	
+	public void exclirProdutoNoCarrinho(CustomerShoppingLogin customerShoppingLogin, String userId ) {
+		this.httpManager.get()
+		.given()
+		 	.header("Authorization", "Bearer " +realizarLoginRetornandoToken(customerShoppingLogin))
+		.when()
+			.delete("/order/api/v1/carts/"+userId+"")
 		.then()
 			.log().all()
 			.statusCode(200);
 	}
+	
+	public void exclirUmProdutoNoCarrinho(CustomerShoppingLogin customerShoppingLogin, String color, String productId, String UserId ) {
+		this.httpManager.get()
+		.given()
+		 	.header("Authorization", "Bearer " +realizarLoginRetornandoToken(customerShoppingLogin))
+		 	.log().all()
+		.when()
+			.delete("order/api/v1/carts/"+UserId+"/product/"+productId+"/color/"+color+"")
+     .then()
+			 .log().all()
+			 .statusCode(200);
+   }
 }
 	
 

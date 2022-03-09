@@ -23,5 +23,17 @@ public class CarrinhoStepDefinition {
 		accountServiceController.adicionarProdutoNoCarrinho(new CustomerShoppingLogin(string, string2, string3), new CustomerCarrinho(color, productId, quantidade, UserId));
 		
 	}
+	
+	@E("excluir produto do carrinho {string} {string} {string} {string}")
+	public void excluirProdutoDoCarrinho(String email, String password, String loginName, String UserId) throws Throwable {
+		accountServiceController.exclirProdutoNoCarrinho(new CustomerShoppingLogin(email, password, loginName), UserId);
+		
+	}
+	
+	@E("excluir um produto do carrinho {string} {string} {string} {string} {string} {string}")
+	public void excluirumProdutoDoCarrinho(String email, String password, String loginName, String color, String productId, String UserId) throws Throwable {
+		accountServiceController.exclirUmProdutoNoCarrinho(new CustomerShoppingLogin(email, password, loginName),color, productId, UserId);
+		
+	}
 
 }

@@ -14,7 +14,7 @@
 	"runner": {
 		"cucumber": {
 			"glue": ["com.keeggo.demo_rest.steps"],
-			"tags": ["@CT01_TestarServico, @CT03_Login, @CT04_AdicionarProdutoCarrinho, @CT02_cadastro_usuario"],
+			"tags": ["@CT02_add_master_credit"],
 			"snippets": "camelcase",
 			"dryRun": false
 		},

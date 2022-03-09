@@ -7,8 +7,8 @@ Funcionalidade: carrinho de compra
     E adicionar um produto ao carrinho "<email>" "<password>" "<loginName>" "<color>" "<productId>" "<quantidade>" "<userId>"
 
     Exemplos: 
-      | URL                                             | email             | password  | loginName | color  | productId | quantidade | userId    |
-      | /accountservice/accountrest/api/v1/health-check | email03@teste.com | Teste@123 | NewUser56 | 414141 |        20 |          1 | 943013159 |
+      | URL                                             | email             | password  | loginName  | color  | productId | quantidade | userId    |
+      | /accountservice/accountrest/api/v1/health-check | email03@teste.com | Teste@123 | testando07 | 414141 |        20 |          1 | 271680216 |
 
   @CT05_ExcluirProdutosCarrinho
   Esquema do Cenario: ExcluirProdutosCarrinho
@@ -27,3 +27,4 @@ Funcionalidade: carrinho de compra
     Exemplos: 
       | URL                                             | email             | password  | loginName | color  | productId | userId    |
       | /accountservice/accountrest/api/v1/health-check | email03@teste.com | Teste@123 | NewUser56 | 414141 |        20 | 943013159 |
+

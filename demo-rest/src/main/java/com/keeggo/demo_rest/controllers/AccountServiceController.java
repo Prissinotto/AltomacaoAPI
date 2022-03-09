@@ -3,6 +3,7 @@ package com.keeggo.demo_rest.controllers;
 import static org.hamcrest.Matchers.containsString;
 
 import com.keeggo.demo_rest.model.CustomerCarrinho;
+import com.keeggo.demo_rest.model.CustomerMasterCredit;
 import com.keeggo.demo_rest.model.CustomerShopping;
 import com.keeggo.demo_rest.model.CustomerShoppingLogin;
 import com.keeggo.rest_assured_connector.driver.RequestHTTPManager;
@@ -23,13 +24,14 @@ public class AccountServiceController {
 		.then()	
 			.log().all()
 			.statusCode(200)
-			.body(containsString("Success"))
+			//.body(containsString("Success"))
 		;
 	}
 	
 	public void cadastraUsuario(CustomerShopping customerShopping) {
 		this.httpManager.get()
 		.given()
+			.log().all()
 			.body(customerShopping)
 		 	.headers("Content-Type", "application/json")
 			.post("/accountservice/accountrest/api/v1/register")
@@ -74,7 +76,18 @@ public class AccountServiceController {
 			.log().all()
 			.statusCode(201);
 	}
-	
+  
+	public void adicionarCartaoDeCredito(CustomerShoppingLogin customerShoppingLogin, CustomerMasterCredit customerMasterCredit) {
+		this.httpManager.get()
+		.given()
+		 	.header("Authorization", "Bearer " +realizarLoginRetornandoToken(customerShoppingLogin))
+		 	.body(customerMasterCredit)
+		 .when()
+			.post("/accountservice/accountrest/api/v1/addMasterCredit")
+     .then()
+			.log().all()
+			.statusCode(200);
+	}
 	
 	public void exclirProdutoNoCarrinho(CustomerShoppingLogin customerShoppingLogin, String userId ) {
 		this.httpManager.get()
@@ -94,10 +107,10 @@ public class AccountServiceController {
 		 	.log().all()
 		.when()
 			.delete("order/api/v1/carts/"+UserId+"/product/"+productId+"/color/"+color+"")
-		.then()
-			.log().all()
-			.statusCode(200);
-	}
+     .then()
+			 .log().all()
+			 .statusCode(200);
+   }
 }
 	
 
